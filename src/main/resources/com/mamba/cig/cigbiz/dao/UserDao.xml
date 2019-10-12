@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mamba.cig.cigbiz.dao.UserDao">
+    <select id="findUser" resultType="com.mamba.cig.cigbiz.po.UserPO">
+        select * from user
+        where phone = #{phone}
+        and password = #{password}
+        limit 1
+    </select>
+</mapper>

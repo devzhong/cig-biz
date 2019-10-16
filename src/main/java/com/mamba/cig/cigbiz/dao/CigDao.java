@@ -11,5 +11,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CigDao {
 
-    CigPO findByCode(String code);
+    CigPO findByCode(String barCode);
 }

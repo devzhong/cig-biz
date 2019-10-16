@@ -22,9 +22,9 @@ public class CigService {
     @Autowired
     private CigDao cigDao;
 
-    public RestResponse details(String code){
+    public RestResponse details(String barCode){
         try {
-            CigPO details = cigDao.findByCode(code);
+            CigPO details = cigDao.findByCode(barCode);
             return RestResponse.success(details);
         }catch (Exception e){
             LOGGER.error("CigService details error {}",e);

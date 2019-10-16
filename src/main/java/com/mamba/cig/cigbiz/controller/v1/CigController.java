@@ -22,8 +22,8 @@ public class CigController {
     private CigService cigService;
 
     @ApiOperation("cig详情")
-    @RequestMapping(value = "/cigs/{code}", method = RequestMethod.GET)
-    public RestResponse details(@PathVariable("code") String code){
-        return cigService.details(code);
+    @RequestMapping(value = "/cigs/{barCode}", method = RequestMethod.GET)
+    public RestResponse details(@PathVariable("barCode") String barCode){
+        return cigService.details(barCode);
     }
 }

@@ -1,9 +1,9 @@
 package com.mamba.cig.cigbiz.service;
 
 import com.mamba.cig.cigbiz.RestResponse;
-import com.mamba.cig.cigbiz.dao.CigDao;
+import com.mamba.cig.cigbiz.dao.CigaretteDao;
 import com.mamba.cig.cigbiz.error.ServiceError;
-import com.mamba.cig.cigbiz.po.CigPO;
+import com.mamba.cig.cigbiz.po.CigarettePO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,19 +15,19 @@ import java.util.List;
 /**
  * desc:
  * author:zhongjianbin
- * Date:2019/10/8 10:39
+ * Date:2019/10/24 16:54
  */
 @Service
-public class CigService {
+public class CigaretteService {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(CigService.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(CigaretteService.class);
 
     @Autowired
-    private CigDao cigDao;
+    private CigaretteDao cigaretteDao;
 
-    public RestResponse details(String barCode){
+    public RestResponse codeDetails(String code){
         try {
-            CigPO details = cigDao.findByCode(barCode);
+            CigarettePO details = cigaretteDao.findByCode(code);
             return RestResponse.success(details);
         }catch (Exception e){
             LOGGER.error("CigService details error {}",e);
@@ -35,9 +35,9 @@ public class CigService {
         }
     }
 
-    public RestResponse nameDetails(String productName){
+    public RestResponse nameDetails(String name){
         try {
-            CigPO details = cigDao.findByName(productName);
+            CigarettePO details = cigaretteDao.findByName(name);
             return RestResponse.success(details);
         }catch (Exception e){
             LOGGER.error("CigService nameDetails error {}",e);
@@ -45,11 +45,11 @@ public class CigService {
         }
     }
 
-    public RestResponse<CigPO> namesDetails(String productName){
-        List<CigPO> pos = new ArrayList<>();
+    public RestResponse<CigarettePO> fuzzyNamesDetails(String name){
+        List<CigarettePO> pos = new ArrayList<>();
         try {
-            List<CigPO> cigPOS = cigDao.findByFuzzyName(productName);
-            for (CigPO cigPO: cigPOS){
+            List<CigarettePO> cigPOS = cigaretteDao.findByFuzzyName(name);
+            for (CigarettePO cigPO: cigPOS){
                 pos.add(cigPO);
             }
             return RestResponse.success(pos);
@@ -58,4 +58,6 @@ public class CigService {
             return RestResponse.error(ServiceError.CIG_NOT_FOUND_ERROR);
         }
     }
+
+
 }

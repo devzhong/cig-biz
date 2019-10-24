@@ -6,4 +6,14 @@
         where barCode = #{barCode}
         limit 1
     </select>
+
+    <select id="findByName" parameterType="java.lang.String" resultType="com.mamba.cig.cigbiz.po.CigPO">
+        select * from product
+        where productName like CONCAT('%',#{productName},'%')
+    </select>
+
+    <select id="findByFuzzyName" parameterType="java.lang.String" resultType="com.mamba.cig.cigbiz.po.CigPO">
+        select  * from  product
+        where productName like CONCAT('%',#{productName},'%')
+    </select>
 </mapper>

@@ -1,6 +1,7 @@
 package com.mamba.cig.cigbiz.controller.v1;
 
 import com.mamba.cig.cigbiz.RestResponse;
+import com.mamba.cig.cigbiz.po.CigPO;
 import com.mamba.cig.cigbiz.service.CigService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,5 +26,17 @@ public class CigController {
     @RequestMapping(value = "/cigs/{barCode}", method = RequestMethod.GET)
     public RestResponse details(@PathVariable("barCode") String barCode){
         return cigService.details(barCode);
+    }
+
+    @ApiOperation("cig详情")
+    @RequestMapping(value = "/cigs/name/{productName}", method = RequestMethod.GET)
+    public RestResponse nameDetails(@PathVariable("productName") String productName){
+        return cigService.nameDetails(productName);
+    }
+
+    @ApiOperation("cig详情")
+    @RequestMapping(value = "/cigs/names/{productName}", method = RequestMethod.GET)
+    public RestResponse<CigPO> namesDetails(@PathVariable("productName") String productName){
+        return cigService.namesDetails(productName);
     }
 }

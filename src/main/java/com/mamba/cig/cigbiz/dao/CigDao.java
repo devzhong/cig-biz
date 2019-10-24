@@ -1,7 +1,10 @@
 package com.mamba.cig.cigbiz.dao;
 
 import com.mamba.cig.cigbiz.po.CigPO;
+import com.mamba.cig.cigbiz.po.CigarettePO;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 /**
  * desc:
@@ -12,4 +15,8 @@ import org.springframework.stereotype.Repository;
 public interface CigDao {
 
     CigPO findByCode(String barCode);
+    CigPO findByName(String productName);
+    List<CigPO> findByFuzzyName(String productName);
+
+
 }
